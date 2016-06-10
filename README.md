@@ -1,0 +1,2 @@
+## GRPC Example in Karaf
+The repository contains  an example of how to generate stub code using maven, how to implement a client/server from generated stub code, and provides a karaf feature file allowing this to be deployed in the karaf container. 
