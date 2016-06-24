@@ -1,16 +1,16 @@
 package com.stackleader.training.grpc.helloworld.server.internal;
 
 import com.stackleader.training.grpc.helloworld.api.GreeterGrpc;
-import com.stackleader.training.grpc.helloworld.api.GreeterGrpc.AbstractGreeter;
 import com.stackleader.training.grpc.helloworld.api.HelloReply;
 import com.stackleader.training.grpc.helloworld.api.HelloRequest;
+import io.grpc.BindableService;
 import io.grpc.stub.StreamObserver;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(immediate = true, service = AbstractGreeter.class)
-public class GreeterService extends GreeterGrpc.AbstractGreeter {
+@Component(immediate = true)
+public class GreeterService extends GreeterGrpc.AbstractGreeter implements BindableService{
 
     private static final Logger LOG = LoggerFactory.getLogger(GreeterService.class);
 

@@ -40,10 +40,16 @@
                       protobuf-java directly, you will be transitively depending on the
                       protobuf-java version that grpc depends on.
                     -->
-                    <protocArtifact>com.google.protobuf:protoc:3.0.0-beta-2:exe:${os.detected.classifier}</protocArtifact>
+                    <protocArtifact>
+                        com.google.protobuf:protoc:3.0.0-beta-2:exe:${os.detected.classifier}
+                    </protocArtifact>
                     <pluginId>grpc-java</pluginId>
-                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:0.14.0:exe:${os.detected.classifier}</pluginArtifact>
-                    <protoSourceRoot> ${basedir}/src/main/resources/proto</protoSourceRoot>
+                    <pluginArtifact>
+                        io.grpc:protoc-gen-grpc-java:0.14.0:exe:${os.detected.classifier}
+                    </pluginArtifact>
+                    <protoSourceRoot>
+                        ${basedir}/src/main/resources/proto
+                    </protoSourceRoot>
                 </configuration>
                 <executions>
                     <execution>
@@ -78,7 +84,9 @@
                 <version>3.0.0</version>
                 <configuration>
                     <archive>
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                        <manifestFile>
+                            ${project.build.outputDirectory}/META-INF/MANIFEST.MF
+                        </manifestFile>
                     </archive>
                 </configuration>
             </plugin>
@@ -86,4 +94,3 @@
     </build>
     
 </project>
-

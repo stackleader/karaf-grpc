@@ -1,9 +1,8 @@
 package com.stackleader.training.grpc.helloworld.server.internal;
 
-import com.stackleader.training.grpc.helloworld.api.GreeterGrpc.AbstractGreeter;
 import com.stackleader.training.grpc.helloworld.server.GrpcServer;
+import io.grpc.BindableService;
 import io.grpc.Server;
-import io.grpc.ServerBuilder;
 import io.grpc.netty.NettyServerBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -20,7 +19,7 @@ public class HelloWorldServer implements GrpcServer {
     private static final Logger LOG = LoggerFactory.getLogger(HelloWorldServer.class);
     private final int port = 5000;
     private Server server;
-    private AbstractGreeter greeterService;
+    private BindableService greeterService;
 
     @Activate
     public void activate() {
@@ -29,7 +28,7 @@ public class HelloWorldServer implements GrpcServer {
 
     private void start() {
         try {
-            server = OSGiServiceBuilder
+            server = NettyServerBuilder
                     .forPort(port)
                     .addService(greeterService)
                     .build()
@@ -48,7 +47,7 @@ public class HelloWorldServer implements GrpcServer {
     }
 
     @Reference
-    public void setGreeterService(AbstractGreeter greeterService) {
+    public void setGreeterService(BindableService greeterService) {
         this.greeterService = greeterService;
     }
 
@@ -56,13 +55,6 @@ public class HelloWorldServer implements GrpcServer {
     public void deactivate() {
         if (server != null) {
             server.shutdown();
-        }
-    }
-
-    private abstract static class OSGiServiceBuilder extends ServerBuilder {
-
-        public static ServerBuilder<?> forPort(int port) {
-            return NettyServerBuilder.forPort(port);
         }
     }
 
